@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import net.sf.json.JSONArray;
+
 @WebServlet("/buy")
 public class Buy extends HttpServlet {
 	static final Logger logger = Logger.getLogger(Buy.class
@@ -69,10 +71,12 @@ public class Buy extends HttpServlet {
 			ps = conn.prepareStatement(sql+"Date1 = '"+date1+"'" + "and Date2 = "+"'"+date2+"'");
 //			ps = conn.prepareStatement("select * from test.buyt where Date1 = '2001-01-03' and Date2 = '2001-01-04'");
 			resp.setContentType("text/html");
+			JSONArray arrayObj=new JSONArray();
 			PrintWriter writer = resp.getWriter();
 			writer.println("<html><body>");
 			rs = ps.executeQuery();
 			logger.info("msg");
+			writer.println("<p>: eeeee " + "</p>");
 			while (rs.next()) {
 				logger.info(rs.toString());
 				writer.println("<p>Name: " + rs.getString("Name") + "</p>");
