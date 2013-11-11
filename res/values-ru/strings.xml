@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="Buy">Купить Ски-пасс</string>
+    <string name="Sell">Продать Ски-пасс</string>
+
+
+
+    <string name="title_activity_choose_date">ChooseDate</string>
+    <string name="Start">Начало Катания</string>
+    <string name="End">Конец Катания</string>
+    <string name="Confirm">Подтвердить</string>
+    <string name="Finish">Закончить</string>
+    <string name="hello">Привет</string>
+    <string name="Back">Назад</string>
+    <string name="title_activity_go_to_enter_name">GoToEnterName</string>
+    <string name="Name">Введите Ваше Имя</string>
+    <string name="Phone">Введите Ваш Телефон</string>
+    <string name="title_activity_enter_price">EnterPrice</string>
+    <string name="title_activity_show_list">ShowList</string>
+    <string name="List">Доступные Ски-пассы</string>
+    <string name="Price">Введите Вашу Цену (Грн)</string>
+    <string name="title_activity_choose_date_end">ChooseDateEnd</string>
+    <string name="action_search">Search</string>
+    <string name="title_activity_container">Container</string>
+    <string name="finish">Нажмите Закончить для окончания</string>
+
+    <string name="admob_publisher_id">скопированный ранее Publisher ID</string>
+
+    <string name="btn_en">Английский</string>
+    <string name="btn_ru">Русский</string>
+
+</resources>
