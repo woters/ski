@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import net.sf.json.JSONArray;
+//import net.sf.json.JSONArray;
 
 @WebServlet("/buy")
 public class Buy extends HttpServlet {
@@ -35,7 +35,7 @@ public class Buy extends HttpServlet {
 		try {
 			// logger.info("init start");
 			ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("jdbc/_My3");
+			ds = (DataSource) ctx.lookup("jdbc/_my");
 			// logger.info("init end");
 		}
 		catch (NamingException ne) {
@@ -71,7 +71,7 @@ public class Buy extends HttpServlet {
 			ps = conn.prepareStatement(sql+"Date1 = '"+date1+"'" + "and Date2 = "+"'"+date2+"'");
 //			ps = conn.prepareStatement("select * from test.buyt where Date1 = '2001-01-03' and Date2 = '2001-01-04'");
 			resp.setContentType("text/html");
-			JSONArray arrayObj=new JSONArray();
+//			JSONArray arrayObj=new JSONArray();
 			PrintWriter writer = resp.getWriter();
 			writer.println("<html><body>");
 			rs = ps.executeQuery();

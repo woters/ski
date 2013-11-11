@@ -40,7 +40,7 @@ public class Sell extends HttpServlet {
 		try {
 			// logger.info("init start");
 			ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("jdbc/_My3");
+			ds = (DataSource) ctx.lookup("jdbc/_my");
 			// logger.info("init end");
 		}
 		catch (NamingException ne) {
