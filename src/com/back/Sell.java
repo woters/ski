@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import net.sf.json.JSONArray;
+
 
 /**
  * Servlet implementation class Sell
@@ -78,8 +78,8 @@ public class Sell extends HttpServlet {
 			logger.info(price);
 //			logger.info(date2);
 			int id1 = Math.abs((int) System.nanoTime());
-			logger.info(String.valueOf(id1));
-			ps = conn.prepareStatement("INSERT INTO test.buyt (idBuyT, Price, Date1, Date2, Phone, Name) values ("+String.valueOf(id1)+","+price+",'"+date1+
+			logger.info("before ins");
+			ps = conn.prepareStatement("INSERT INTO test.BuyT (idBuyT, Price, Date1, Date2, Phone, Name) values ("+String.valueOf(id1)+","+price+",'"+date1+
 					"','"+date2+"',"+phone+",'"+name+"')");
 //			ps = conn.prepareStatement("INSERT INTO test.buyt (idBuyT, Price) values (56, 17)");
 			resp.setContentType("text/html");
@@ -88,12 +88,8 @@ public class Sell extends HttpServlet {
 	//		rs = ps.executeQuery();
 			
 			int ex = ps.executeUpdate();
-			logger.info("msg");
-			/*while (rs.next()) {
-				logger.info(rs.toString());
-				writer.println("<p>Name: " + rs.getString("Name") + "</p>");
-				writer.println("<p>Phone: " + rs.getString("Phone") + "</p>");
-			}*/
+			logger.info("after ins");
+			
 			writer.println("</body></html>");
 			writer.close();
 		} catch (Exception e) {

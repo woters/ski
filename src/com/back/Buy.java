@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.google.gson.Gson;
+
 //import net.sf.json.JSONArray;
 
 @WebServlet("/buy")
@@ -29,7 +31,7 @@ public class Buy extends HttpServlet {
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 
-	String sql = "SELECT Name, Phone FROM test.buyt where ";
+	String sql = "SELECT Name, Phone FROM test.BuyT where ";
 
 	public void init() throws ServletException {
 		try {
@@ -70,19 +72,29 @@ public class Buy extends HttpServlet {
 			logger.info(date2);
 			ps = conn.prepareStatement(sql+"Date1 = '"+date1+"'" + "and Date2 = "+"'"+date2+"'");
 //			ps = conn.prepareStatement("select * from test.buyt where Date1 = '2001-01-03' and Date2 = '2001-01-04'");
-			resp.setContentType("text/html");
+//			resp.setContentType("text/html");
+			resp.setContentType("application/json; charset=UTF-8");
 //			JSONArray arrayObj=new JSONArray();
-			PrintWriter writer = resp.getWriter();
-			writer.println("<html><body>");
+			
+//			writer.println("<html><body>");
+//			DataObject obj = new DataObject();
+			Gson gson = new Gson();
 			rs = ps.executeQuery();
 			logger.info("msg");
-			writer.println("<p>: eeeee " + "</p>");
+			String response = "{ \"AvaleiblePasses\": [";
+//			writer.println("<p>: eeeee " + "</p>");
+			int i = 0;
 			while (rs.next()) {
+				if (i != 0)  response = response + ", ";
 				logger.info(rs.toString());
-				writer.println("<p>Name: " + rs.getString("Name") + "</p>");
-				writer.println("<p>Phone: " + rs.getString("Phone") + "</p>");
+				response = response + "{ \"Name\":\""+rs.getString("Name")+"\", \"Phone\":\""+rs.getString("Phone")+"\"}";
+//				writer.println("<p>Name: " + rs.getString("Name") + "</p>");
+//				writer.println("<p>Phone: " + rs.getString("Phone") + "</p>");
 			}
-			writer.println("</body></html>");
+			response = response +"]}";
+			PrintWriter writer = resp.getWriter();
+			writer.write(response);
+		//	writer.print(response);
 			writer.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +104,8 @@ public class Buy extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		try {
 
-			resp.setContentType("text/html");
+//			resp.setContentType("text/html");
+			resp.setContentType("application/json; charset=UTF-8");
 			logger.info("after post");
 			PrintWriter writer = resp.getWriter();
 			this.doPost(req, resp);
