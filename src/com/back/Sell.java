@@ -34,7 +34,7 @@ public class Sell extends HttpServlet {
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 
-	String sql = "INSERT INTO test.buyt values( ";
+	String sql = "INSERT INTO test.buyT1 values( ";
 
 	public void init() throws ServletException {
 		try {
@@ -79,7 +79,7 @@ public class Sell extends HttpServlet {
 //			logger.info(date2);
 			int id1 = Math.abs((int) System.nanoTime());
 			logger.info("before ins");
-			ps = conn.prepareStatement("INSERT INTO test.BuyT (idBuyT, Price, Date1, Date2, Phone, Name) values ("+String.valueOf(id1)+","+price+",'"+date1+
+			ps = conn.prepareStatement("INSERT INTO test.buyT1 (idBuyT, price, Date1, Date2, Phone, Name) values ("+String.valueOf(id1)+","+price+",'"+date1+
 					"','"+date2+"',"+phone+",'"+name+"')");
 //			ps = conn.prepareStatement("INSERT INTO test.buyt (idBuyT, Price) values (56, 17)");
 			resp.setContentType("text/html");

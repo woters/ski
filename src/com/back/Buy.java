@@ -31,7 +31,7 @@ public class Buy extends HttpServlet {
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 
-	String sql = "SELECT Name, Phone FROM test.BuyT where ";
+	String sql = "SELECT Name, Phone FROM test.buyT1 where ";
 
 	public void init() throws ServletException {
 		try {
@@ -70,28 +70,23 @@ public class Buy extends HttpServlet {
 			String date2 = req.getParameter("date2");
 			logger.info(date1);
 			logger.info(date2);
-			ps = conn.prepareStatement(sql+"Date1 = '"+date1+"'" + "and Date2 = "+"'"+date2+"'");
+			ps = conn.prepareStatement(sql+"Date1 <= '"+date1+"'" + "and Date2 >= "+"'"+date2+"'");
 //			ps = conn.prepareStatement("select * from test.buyt where Date1 = '2001-01-03' and Date2 = '2001-01-04'");
-//			resp.setContentType("text/html");
 			resp.setContentType("application/json; charset=UTF-8");
-//			JSONArray arrayObj=new JSONArray();
-			
-//			writer.println("<html><body>");
-//			DataObject obj = new DataObject();
+//			
 			Gson gson = new Gson();
 			rs = ps.executeQuery();
 			logger.info("msg");
 			String response = "{ \"AvaleiblePasses\": [";
-//			writer.println("<p>: eeeee " + "</p>");
 			int i = 0;
 			while (rs.next()) {
 				if (i != 0)  response = response + ", ";
+				i++;
 				logger.info(rs.toString());
 				response = response + "{ \"Name\":\""+rs.getString("Name")+"\", \"Phone\":\""+rs.getString("Phone")+"\"}";
-//				writer.println("<p>Name: " + rs.getString("Name") + "</p>");
-//				writer.println("<p>Phone: " + rs.getString("Phone") + "</p>");
 			}
 			response = response +"]}";
+			logger.info(date1 + " "+ date2 + "  "+response);
 			PrintWriter writer = resp.getWriter();
 			writer.write(response);
 		//	writer.print(response);
