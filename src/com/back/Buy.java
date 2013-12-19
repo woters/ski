@@ -31,7 +31,7 @@ public class Buy extends HttpServlet {
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 
-	String sql = "SELECT Name, Phone FROM test.buyT1 where ";
+	String sql = "SELECT Name, Phone, price, Date1, Date2, SkiNum FROM test.buyT1 where ";
 
 	public void init() throws ServletException {
 		try {
@@ -83,7 +83,10 @@ public class Buy extends HttpServlet {
 				if (i != 0)  response = response + ", ";
 				i++;
 				logger.info(rs.toString());
-				response = response + "{ \"Name\":\""+rs.getString("Name")+"\", \"Phone\":\""+rs.getString("Phone")+"\"}";
+				response = response + "{ \"Name\":\""+rs.getString("Name")+"\", \"Phone\":\""+rs.getString("Phone")+
+						"\", \"price\":\""+rs.getString("price")+
+						"\", \"Date1\":\""+rs.getString("Date1")+
+						"\", \"Date2\":\""+rs.getString("Date2")+"\"}";
 			}
 			response = response +"]}";
 			logger.info(date1 + " "+ date2 + "  "+response);
